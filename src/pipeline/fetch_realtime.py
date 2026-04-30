@@ -5,8 +5,8 @@ from dotenv import load_dotenv
 load_dotenv()
 API_KEY = os.getenv("STIB_API_KEY")
 
-WAITING_TIME_URL = "https://data.stib-mivb.brussels/api/explore/v2.1/catalog/datasets/waiting-time-rt-production/records"
-VEHICLE_POS_URL  = "https://data.stib-mivb.brussels/api/explore/v2.1/catalog/datasets/vehicle-position-rt-production/records"
+WAITING_TIME_URL = "https://api-management-opendata-production.azure-api.net/api/datasets/stibmivb/rt/WaitingTimes/"
+VEHICLE_POS_URL  = "https://api-management-opendata-production.azure-api.net/api/datasets/stibmivb/rt/VehiclePositions/[?select][&where][&group_by][&order_by][&limit][&offset]"
 
 def fetch_waiting_times(limit=100):
     params = {"limit": limit, "apikey": API_KEY}
