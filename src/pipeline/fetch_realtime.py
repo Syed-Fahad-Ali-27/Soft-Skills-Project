@@ -1,4 +1,4 @@
-import requests, json, os
+import requests, json, os, time
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -22,5 +22,13 @@ def save_snapshot(data, folder="data/raw/realtime"):
     print(f"Saved {len(data)} records → {path}")
 
 if __name__ == "__main__":
-    data = fetch_waiting_times()
-    save_snapshot(data)
+    INTERVAL = 30  # seconds
+
+    while True:
+        try:
+            data = fetch_waiting_times()
+            save_snapshot(data)
+        except Exception as e:
+            print(f"Error: {e}")
+
+        time.sleep(INTERVAL)
